@@ -5,39 +5,25 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import static ru.praktikum.selenium.AppConfig.APP_URL;
 
 public class QuestionsPage {
-    WebDriver webDriver;
-
+    static WebDriver webDriver;
     public QuestionsPage(WebDriver webDriver) {
         this.webDriver = webDriver;
-        webDriver.get(APP_URL);
     }
 
-    public void scrollPage(By locator) {
-        WebElement element = webDriver.findElement(locator);
-        JavascriptExecutor executor = (JavascriptExecutor) webDriver;
-        executor.executeScript("arguments[0].scrollIntoView();", element);
-    }
+    private final By firstQuestionField = By.id("accordion__heading-0");
+    private final By secondQuestionField = By.id("accordion__heading-1");
+    private final By thirdQuestionField = By.id("accordion__heading-2");
+    private final By fourthQuestionField = By.id("accordion__heading-3");
+    private final By fifthQuestionField = By.id("accordion__heading-4");
+    private final By sixthQuestionField = By.id("accordion__heading-5");
+    private final By seventhQuestionField = By.id("accordion__heading-6");
+    private final By eighthQuestionField = By.id("accordion__heading-7");
 
-    private By coocieButton = By.className("App_CookieButton__3cvqF");
-    private By firtsQuestionField = By.id("accordion__heading-0");
-    private By secondQuestionField = By.id("accordion__heading-1");
-    private By thirdQuestionField = By.id("accordion__heading-2");
-    private By fourthQuestionField = By.id("accordion__heading-3");
-    private By fifthQuestionField = By.id("accordion__heading-4");
-    private By sixthQuestionField = By.id("accordion__heading-5");
-    private By seventhQuestionField = By.id("accordion__heading-6");
-    private By eighthQuestionField = By.id("accordion__heading-7");
-
-
-    public void clickCookieButton() {
-        webDriver.findElement(coocieButton).click();
-    }
 
     public void clickFirstQuestionField() {
-        webDriver.findElement(firtsQuestionField).click();
+        webDriver.findElement(firstQuestionField).click();
     }
 
     public void clickSecondQuestionField() {
@@ -99,6 +85,10 @@ public class QuestionsPage {
     public String getTextEighthQuestionField() {
         return webDriver.findElement(By.xpath("/html/body/div/div/div/div[5]/div[2]/div/div[8]/div[2]/p")).getText();
     }
-
+    public static void scrollPage(By locator) {
+        WebElement element = webDriver.findElement(locator);
+        JavascriptExecutor executor = (JavascriptExecutor) webDriver;
+        executor.executeScript("arguments[0].scrollIntoView();", element);
+    }
 
 }
